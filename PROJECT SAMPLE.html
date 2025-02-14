@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://example.com/background-image.jpg'); /* Replace with your background image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); /* White background with transparency */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            background: #ff6600;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        nav button {
+            color: white;
+            background-color: transparent;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ff6600;
+        }
+
+        .menu-item {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-item h3 {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .menu-item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .add-to-cart {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #222;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .cart {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e9ecef;
+            border-radius: 8px;
+        }
+
+        .cart h2 {
+            color: #ff6600;
+        }
+
+        .remove-button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px; /* Space between item text and remove button */
+        }
+
+        .clear-cart {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+        }
+
+        .total-amount {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Search and filter styles */
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .daily-specials {
+            background-color: #f8e2b4;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        /* Terms and Policies styles */
+        .terms {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e9ecef;
+            border-radius: 8px;
+        }
+				.image-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 10px; /* Space between images */
+    padding: 20px;
+}
+
+.image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Optional: Rounded corners */
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Delicious Bites</h1>
+            <nav>
+                <button onclick="showCategory('starters')">Starters</button>
+                <button onclick="showCategory('main-course')">Main Course</button>
+                <button onclick="showCategory('desserts')">Desserts</button>
+                <button onclick="showCategory('drinks')">Drinks</button>
+                <button onclick="showCategory('all')">Show All</button>
+            </nav>
+        </header>
+		<div class="image-grid">
+    <img src="STARTER.jpg" alt="Food 1">
+    <img src="BIRIYANI 1.jpg" alt="Food 2">
+    <img src="DESSERTS.jpg" alt="Food 3">
+    <img src="DRINKS.jpg" alt="Food 4">
+   </div>
+
+        <div class="daily-specials">
+            <h2>Today's Special</h2>
+            <p>Try our Grilled Salmon for only ₹1,250!</p>
+        </div>
+
+        <section id="starters" class="menu-category">
+            <h2>Starters</h2>
+            <div class="menu-item" data-category="starters">
+                <h3>Garlic Bread <span>₹499</span></h3>
+                <p>Freshly baked bread with garlic butter.</p>
+                <button class="add-to-cart" data-item="Garlic Bread" data-price="499">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="starters">
+                <h3>Stuffed Mushrooms <span>₹624</span></h3>
+                <p>Mushrooms stuffed with garlic and herbs.</p>
+                <button class="add-to-cart" data-item="Stuffed Mushrooms" data-price="624">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="starters">
+                <h3>Vegetable Samosas <span>₹499</span></h3>
+                <p>Spicy vegetable-filled pastries.</p>
+                <button class="add-to-cart" data-item="Vegetable Samosas" data-price="499">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="starters">
+                <h3>Bruschetta <span>₹583</span></h3>
+                <p>Grilled bread topped with tomatoes and basil.</p>
+                <button class="add-to-cart" data-item="Bruschetta" data-price="583">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="starters">
+                <h3>Onion Rings <span>₹399</span></h3>
+                <p>Crispy fried onion rings.</p>
+                <button class="add-to-cart" data-item="Onion Rings" data-price="399">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="starters">
+                <h3>Spring Rolls <span>₹399</span></h3>
+                <p>Crispy rolls filled with mixed vegetables.</p>
+                <button class="add-to-cart" data-item="Spring Rolls" data-price="399">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="starters">
+                <h3>Chicken Wings <span>₹699</span></h3>
+                <p>Spicy chicken wings served with ranch.</p>
+                <button class="add-to-cart" data-item="Chicken Wings" data-price="699">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="starters">
+                <h3>Caprese Salad <span>₹549</span></h3>
+                <p>Fresh mozzarella, tomatoes, and basil.</p>
+                <button class="add-to-cart" data-item="Caprese Salad" data-price="549">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="starters">
+                <h3>Cheese Platter <span>₹799</span></h3>
+                <p>Assorted cheeses served with crackers.</p>
+                <button class="add-to-cart" data-item="Cheese Platter" data-price="799">Add to Cart</button>
+            </div>
+        </section>
+
+        <section id="main-course" class="menu-category" style="display: none;">
+            <h2>Main Course</h2>
+            <div class="menu-item" data-category="main-course">
+                <h3>Cheese Burger <span>₹749</span></h3>
+                <p>Juicy beef patty with melted cheese.</p>
+                <button class="add-to-cart" data-item="Cheese Burger" data-price="749">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="main-course">
+                <h3>Grilled Salmon <span>₹1,250</span></h3>
+                <p>Salmon fillet grilled to perfection.</p>
+                <button class="add-to-cart" data-item="Grilled Salmon" data-price="1250">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="main-course">
+                <h3>BBQ Chicken <span>₹1,041</span></h3>
+                <p>Chicken grilled with BBQ sauce.</p>
+                <button class="add-to-cart" data-item="BBQ Chicken" data-price="1041">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="main-course">
+                <h3>Pasta Primavera <span>₹699</span></h3>
+                <p>Pasta with mixed seasonal vegetables.</p>
+                <button class="add-to-cart" data-item="Pasta Primavera" data-price="699">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="main-course">
+                <h3>Vegetable Curry <span>₹499</span></h3>
+                <p>Mixed vegetables cooked in spicy curry.</p>
+                <button class="add-to-cart" data-item="Vegetable Curry" data-price="499">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="main-course">
+                <h3>Paneer Tikka <span>₹629</span></h3>
+                <p>Grilled marinated paneer with spices.</p>
+                <button class="add-to-cart" data-item="Paneer Tikka" data-price="629">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="main-course">
+                <h3>Lamb Chops <span>₹1,499</span></h3>
+                <p>Grilled lamb chops seasoned to perfection.</p>
+                <button class="add-to-cart" data-item="Lamb Chops" data-price="1499">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="main-course">
+                <h3>Seafood Paella <span>₹1,199</span></h3>
+                <p>Traditional Spanish rice dish with seafood.</p>
+                <button class="add-to-cart" data-item="Seafood Paella" data-price="1199">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="main-course">
+                <h3>Vegetable Stir Fry <span>₹599</span></h3>
+                <p>Stir-fried seasonal vegetables in soy sauce.</p>
+                <button class="add-to-cart" data-item="Vegetable Stir Fry" data-price="599">Add to Cart</button>
+            </div>
+        </section>
+
+        <section id="desserts" class="menu-category" style="display: none;">
+            <h2>Desserts</h2>
+            <div class="menu-item" data-category="desserts">
+                <h3>Chocolate Cake <span>₹399</span></h3>
+                <p>Rich chocolate cake with a creamy frosting.</p>
+                <button class="add-to-cart" data-item="Chocolate Cake" data-price="399">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="desserts">
+                <h3>Cheesecake <span>₹499</span></h3>
+                <p>Classic cheesecake with a graham cracker crust.</p>
+                <button class="add-to-cart" data-item="Cheesecake" data-price="499">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="desserts">
+                <h3>Tiramisu <span>₹599</span></h3>
+                <p>Italian coffee-flavored dessert.</p>
+                <button class="add-to-cart" data-item="Tiramisu" data-price="599">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="desserts">
+                <h3>Ice Cream Sundae <span>₹299</span></h3>
+                <p>Vanilla ice cream topped with chocolate syrup.</p>
+                <button class="add-to-cart" data-item="Ice Cream Sundae" data-price="299">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="desserts">
+                <h3>Fruit Tart <span>₹399</span></h3>
+                <p>Delicious tart filled with fresh fruits.</p>
+                <button class="add-to-cart" data-item="Fruit Tart" data-price="399">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="desserts">
+                <h3>Brownies <span>₹349</span></h3>
+                <p>Fudgy brownies served warm with ice cream.</p>
+                <button class="add-to-cart" data-item="Brownies" data-price="349">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="desserts">
+                <h3>Apple Pie <span>₹399</span></h3>
+                <p>Classic apple pie served with vanilla ice cream.</p>
+                <button class="add-to-cart" data-item="Apple Pie" data-price="399">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="desserts">
+                <h3>Milk Cake <span>₹349</span></h3>
+                <p>Soft milk cake with a hint of cardamom.</p>
+                <button class="add-to-cart" data-item="Milk Cake" data-price="349">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="desserts">
+                <h3>Pudding <span>₹299</span></h3>
+                <p>Silky smooth pudding topped with caramel.</p>
+                <button class="add-to-cart" data-item="Pudding" data-price="299">Add to Cart</button>
+            </div>
+        </section>
+
+        <section id="drinks" class="menu-category" style="display: none;">
+            <h2>Drinks</h2>
+            <div class="menu-item" data-category="drinks">
+                <h3>Coke <span>₹99</span></h3>
+                <p>Refreshing cola drink.</p>
+                <button class="add-to-cart" data-item="Coke" data-price="99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="drinks">
+                <h3>Beer <span>₹249</span></h3>
+                <p>Chilled beer.</p>
+                <button class="add-to-cart" data-item="Beer" data-price="249">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="drinks">
+                <h3>Lemonade <span>₹129</span></h3>
+                <p>Refreshing lemonade.</p>
+                <button class="add-to-cart" data-item="Lemonade" data-price="129">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="drinks">
+                <h3>Fresh Juice <span>₹199</span></h3>
+                <p>Freshly squeezed fruit juice.</p>
+                <button class="add-to-cart" data-item="Fresh Juice" data-price="199">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="drinks">
+                <h3>Tea <span>₹49</span></h3>
+                <p>Refreshing hot tea.</p>
+                <button class="add-to-cart" data-item="Tea" data-price="49">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="drinks">
+                <h3>Coffee <span>₹99</span></h3>
+                <p>Rich and aromatic coffee.</p>
+                <button class="add-to-cart" data-item="Coffee" data-price="99">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="drinks">
+                <h3>Soft Drink <span>₹89</span></h3>
+                <p>Choice of soft drinks.</p>
+                <button class="add-to-cart" data-item="Soft Drink" data-price="89">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="drinks">
+                <h3>Mineral Water <span>₹49</span></h3>
+                <p>Pure mineral water.</p>
+                <button class="add-to-cart" data-item="Mineral Water" data-price="49">Add to Cart</button>
+            </div>
+            <div class="menu-item" data-category="drinks">
+                <h3>Fruit Punch <span>₹199</span></h3>
+                <p>Refreshing fruit punch.</p>
+                <button class="add-to-cart" data-item="Fruit Punch" data-price="199">Add to Cart</button>
+            </div>
+<div class="cart">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <div id="total-amount">Total: ₹0</div>
+        <button id="clear-cart">Clear Cart</button>
+        <button id="confirm-order">Confirm Order</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Delicious Bites. All rights reserved.</p>
+        <div class="terms">
+            <h3>Terms and Conditions</h3>
+            <p>All orders are subject to availability. Prices are subject to change without notice. We reserve the right to refuse service to anyone for any reason at any time.</p>
+        </div>
+    </footer>
+
+    <div id="order-confirmation" style="display: none;">
+        <h2>Order Confirmation</h2>
+        <p id="order-details"></p>
+        <button id="ok-button">OK</button>
+    </div>
+
+    <script>
+        const cart = {};
+
+        function showCategory(category) {
+            const categories = document.querySelectorAll('.menu-category');
+            categories.forEach(cat => {
+                cat.style.display = 'none';
+            });
+            if (category === 'all') {
+                categories.forEach(cat => {
+                    cat.style.display = 'block';
+                });
+            } else {
+                document.getElementById(category).style.display = 'block';
+            }
+        }
+
+        function updateCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            for (const item in cart) {
+                const quantity = cart[item].quantity;
+                const price = cart[item].price;
+                const totalPrice = quantity * price;
+                total += totalPrice;
+                cartItemsContainer.innerHTML += `
+                    <div>
+                        ${item} (x${quantity}) - ₹${totalPrice} 
+                        <button class="remove-button" onclick="removeFromCart('${item}')">Remove</button>
+                    </div>
+                `;
+            }
+            document.getElementById('total-amount').innerText = `Total: ₹${total}`;
+        }
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.getAttribute('data-item');
+                const price = parseInt(button.getAttribute('data-price'));
+
+                if (cart[item]) {
+                    cart[item].quantity += 1; // Increase quantity
+                } else {
+                    cart[item] = { price: price, quantity: 1 }; // Add new item
+                }
+                updateCart();
+            });
+        });
+
+        function removeFromCart(item) {
+            if (cart[item]) {
+                cart[item].quantity -= 1; // Decrease quantity
+                if (cart[item].quantity <= 0) {
+                    delete cart[item]; // Remove item if quantity is 0
+                }
+                updateCart();
+            }
+        }
+
+        document.getElementById('clear-cart').addEventListener('click', () => {
+            for (const item in cart) {
+                delete cart[item]; // Clear all items
+            }
+            updateCart();
+        });
+
+        document.getElementById('confirm-order').addEventListener('click', () => {
+            if (Object.keys(cart).length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            const orderNumber = Math.floor(Math.random() * 1000000); // Generate random order number
+            let orderDetails = 'Order confirmed!\nOrder Number: ' + orderNumber + '\n\nItems:\n';
+
+            for (const item in cart) {
+                const quantity = cart[item].quantity;
+                const price = cart[item].price;
+                orderDetails += `${item} (x${quantity}) - ₹${price * quantity}\n`;
+            }
+
+            orderDetails += `\nTotal Amount: ₹${document.getElementById('total-amount').innerText.replace('Total: ₹', '')}`;
+            document.getElementById('order-details').innerText = orderDetails;
+            document.getElementById('order-confirmation').style.display = 'block';
+
+
+            // Clear the cart after confirming the order
+            for (const item in cart) {
+                delete cart[item];
+            }
+            updateCart();
+        });
+
+        document.getElementById('ok-button').addEventListener('click', () => {
+            alert("Thank you for your order!");
+            document.getElementById('order-confirmation').style.display = 'none';
+        });
+		showCategory('all');
+    </script>
+</body>
+</html>
